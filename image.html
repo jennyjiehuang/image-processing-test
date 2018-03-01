@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Uploading and Displaying Test</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<form name="form" class="card-form">
+    <div class="container"></div>
+    <input class="btn" type="file">
+</form>
+
+<script>
+    var imgInput = document.getElementsByClassName("btn");
+    var imgContainer = document.getElementsByClassName("container");
+
+    function uploadImage(imgInput, imgContainer){
+        var checkImg=new RegExp("(.jpg$)|(.png$)|(.bmp$)|(.jpeg$)","i");
+        var i = 0;
+
+        for (; i<imgInput.length && i<imgContainer.length; ++i){
+            (function(i){
+                imgInput[i].onchange = function(){
+                    if (checkImg.test(imgInput[i].value)){
+                        displayImage(this, imgContainer[i]);
+                    }
+                    else{
+                        alert("Wrong image format. Only .jpg .png .bmp .jpeg are supported.")
+                    }
+                }
+            })(i);
+        }
+    }
+
+    function displayImage(imgInput, imgContainer){
+        if (window.FileReader){
+            var reader = new FileReader();
+            reader.readAsDataURL(imgInput.files[0]);
+            reader.onload = function (ev) {
+                var img = ev.target.result;
+                imgContainer.innerHTML = "\<img src="+ img +"\>";
+            }
+        }
+    }
+
+    uploadImage(imgInput, imgContainer);
+</script>
+
+</body>
+</html>

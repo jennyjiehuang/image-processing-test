@@ -1,0 +1,18 @@
+.container{
+    width: 300px;
+    height: 200px;
+    background:#F2F2F2;
+    margin-bottom:35px;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+
+.container>img{
+    width: 300px;
+    height: 200px;
+}
+
+.img{
+    width: 300px;
+    height: 200px;
+}

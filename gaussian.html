@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaussian Blur Test</title>
+    <img src="lena.jpg" id="img">
+    <canvas id="canvas"></canvas>
+    <br/>
+    <button id="btn" onclick="blurring()">Go Gaussian Blur!</button>
+</head>
+<body>
+
+<script src="GaussianBlur.js"></script>
+
+<script>
+    function blurring(){
+        var img = document.getElementById("img"),
+            canvas = document.getElementById('canvas'),
+            width = img.width,
+            height = img.height;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        var context = canvas.getContext("2d");
+        context.drawImage(img, 0, 0);
+
+        var canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+        var blurredImage = gaussianBlur(canvasData, 20);
+        context.putImageData(blurredImage,0,0);
+    }
+</script>
+
+
+</body>
+</html>
